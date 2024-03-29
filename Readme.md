@@ -275,3 +275,46 @@ account1.withdraw(150);
 
 1.Users only need to interact with the deposit, withdraw, and checkBalance methods,(hide implementation) which provide a high-level interface for managing bank accounts.
 ```
+
+### 6. Encapsulation
+>It allows for the hiding of the internal state of an object and provides controlled access to that state through methods. This helps in preventing direct manipulation of data and ensures that the object's state remains consistent.
+``` javascript
+class BankAccount {
+    private balance: number;
+
+    constructor(initialBalance: number) {
+        this.balance = initialBalance;
+    }
+
+    deposit(amount: number): void {
+        this.balance += amount;
+        console.log(`Deposited ${amount} dollars.`);
+    }
+
+    withdraw(amount: number): void {
+        if (amount <= this.balance) {
+            this.balance -= amount;
+            console.log(`Withdrawn ${amount} dollars.`);
+        } else {
+            console.log("Insufficient funds.");
+        }
+    }
+
+    checkBalance(): void {
+        console.log(`Current balance: ${this.balance} dollars.`);
+    }
+}
+
+// Example usage
+let account = new BankAccount(1000); // Initial balance of $1000
+account.deposit(500);
+account.checkBalance(); // Output: Current balance: 1500 dollars.
+account.withdraw(200);
+account.checkBalance(); // Output: Current balance: 1300 dollars.
+account.withdraw(1500); // Output: Insufficient funds.
+
+```
+
+1.the balance property of the BankAccount class is declared as private, so it cannot be accessed directly from outside the class.
+2.Public methods such as deposit, withdraw, and checkBalance provide controlled access to the balance property, allowing users to interact with the account while hiding its internal state.
+3.Encapsulation ensures that the integrity of the BankAccount object is maintained, as external code cannot directly modify the account balance without going through the defined methods.

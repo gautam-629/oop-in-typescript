@@ -2,78 +2,78 @@
 
 ## Overview
 
-This repository provides a comprehensive tutorial on Object-Oriented Programming (OOP) concepts in TypeScript, focusing on practical examples and in-depth explanations.
+This repository demonstrates Object-Oriented Programming (OOP) concepts in TypeScript through practical, real-world examples. Each section explores a key OOP principle with a specific objective and implementation.
 
 ## 1. Prototype
 
-Prototypes in TypeScript allow dynamically adding methods to object instances after their creation.
+### Objective: Employee Bonus and Salary Management System
 
-### Detailed Example:
+**Goal**: Create a flexible system for managing employee compensation that allows dynamic addition of methods to track and calculate bonuses and raises.
+
+### Example Scenario:
+
+Imagine a small startup needs a lightweight way to manage employee compensation without complex class structures. The prototype approach allows for dynamic method addition and flexible salary management.
 
 ```typescript
-// Define an interface to ensure type safety for the prototype-based object
 interface IEmployee {
   name: string;
   salary: number;
-  // Declare methods that will be added to the prototype
   calculateBonus(): number;
   applyRaise(percentage: number): void;
 }
 
-// Create a constructor function for Employee
 function EmployeePrototype(
   this: IEmployee,
   name: string,
   initialSalary: number
 ) {
-  // Initialize basic properties
+  // Initialize basic employee information
   this.name = name;
   this.salary = initialSalary;
 }
 
-// Dynamically add methods to the prototype AFTER initial definition
-// This demonstrates the flexibility of prototype-based programming
+// Dynamically add bonus calculation method
 EmployeePrototype.prototype.calculateBonus = function (): number {
   // Bonus calculation logic - 10% of current salary
   return this.salary * 0.1;
 };
 
+// Dynamically add salary raise method
 EmployeePrototype.prototype.applyRaise = function (percentage: number): void {
   // Increase salary by given percentage
   this.salary += this.salary * (percentage / 100);
 };
 
 // Usage demonstration
-// Cast to 'any' to bypass TypeScript's strict prototype checking
 const john = new (EmployeePrototype as any)("John Doe", 50000);
-
-// Use dynamically added methods
 console.log(john.calculateBonus()); // Outputs: 5000
 john.applyRaise(10); // Increases salary by 10%
 ```
 
-### Key Points:
+### Key Takeaways:
 
-- Allows adding methods to objects after initial creation
-- Provides dynamic extensibility
-- Common in JavaScript-based inheritance models
+- Allows runtime extension of object capabilities
+- Provides flexibility in method addition
+- Useful for scenarios requiring dynamic behavior modification
 
 ## 2. Classes
 
-Classes provide a more structured and modern approach to creating objects with methods and properties.
+### Objective: Secure Bank Account Management System
 
-### Detailed Example:
+**Goal**: Develop a robust bank account class that ensures secure financial transactions with strict validation and controlled access.
+
+### Example Scenario:
+
+A bank needs a secure way to manage customer accounts, preventing invalid transactions and maintaining strict control over account operations.
 
 ```typescript
 class BankAccount {
-  // Private property - can only be accessed within the class
+  // Private properties for secure data management
   private accountBalance: number;
-  // Readonly property that can't be changed after initialization
   readonly accountNumber: string;
 
-  // Constructor to initialize the account
   constructor(initialBalance: number, accountNumber: string) {
-    // Validate input before setting properties
+    // Validate initial account creation
     if (initialBalance < 0) {
       throw new Error("Initial balance cannot be negative");
     }
@@ -81,9 +81,8 @@ class BankAccount {
     this.accountNumber = accountNumber;
   }
 
-  // Public method to deposit funds
+  // Secure deposit method with validation
   deposit(amount: number): void {
-    // Add input validation
     if (amount <= 0) {
       throw new Error("Deposit amount must be positive");
     }
@@ -91,9 +90,8 @@ class BankAccount {
     console.log(`Deposited ${amount}. New balance: ${this.accountBalance}`);
   }
 
-  // Public method to withdraw funds
+  // Controlled withdrawal with balance check
   withdraw(amount: number): boolean {
-    // Check for sufficient funds
     if (amount > this.accountBalance) {
       console.log("Insufficient funds");
       return false;
@@ -105,7 +103,7 @@ class BankAccount {
     return true;
   }
 
-  // Getter method to safely access balance
+  // Safe balance retrieval
   getBalance(): number {
     return this.accountBalance;
   }
@@ -115,27 +113,30 @@ class BankAccount {
 const personalAccount = new BankAccount(1000, "AC001");
 personalAccount.deposit(500); // Deposits 500
 personalAccount.withdraw(200); // Withdraws 200
-console.log(personalAccount.getBalance()); // Outputs current balance
 ```
 
-### Key Points:
+### Key Takeaways:
 
-- Encapsulates data and behavior
-- Provides type-safe object creation
-- Supports access modifiers (private, public, protected)
+- Provides encapsulation of account data
+- Implements validation and security checks
+- Offers controlled access to account operations
 
 ## 3. Static Methods and Properties
 
-Static members belong to the class itself, not to instances of the class.
+### Objective: Bank Branch Management Tracking System
 
-### Detailed Example:
+**Goal**: Create a system to track and manage bank branches across an organization, maintaining a centralized count and providing utility methods.
+
+### Example Scenario:
+
+A bank needs to keep track of total branch count, create default branches, and manage branch-level information efficiently.
 
 ```typescript
 class BankBranch {
-  // Static property shared across all instances
+  // Track total number of branches across the organization
   private static totalBranchCount: number = 0;
 
-  // Instance properties
+  // Instance-specific branch details
   private branchName: string;
   private branchLocation: string;
 
@@ -143,11 +144,11 @@ class BankBranch {
     this.branchName = name;
     this.branchLocation = location;
 
-    // Increment total branch count each time a new branch is created
+    // Automatically increment branch count
     BankBranch.totalBranchCount++;
   }
 
-  // Static method to get total number of branches
+  // Static method to get total branch count
   static getTotalBranchCount(): number {
     return BankBranch.totalBranchCount;
   }
@@ -157,7 +158,7 @@ class BankBranch {
     return new BankBranch("Main Branch", "Headquarters");
   }
 
-  // Instance method
+  // Instance method to get branch details
   getBranchDetails(): string {
     return `${this.branchName} located at ${this.branchLocation}`;
   }
@@ -167,61 +168,63 @@ class BankBranch {
 const branch1 = new BankBranch("Downtown Branch", "City Center");
 const branch2 = new BankBranch("Suburban Branch", "Residential Area");
 
-// Accessing static method
+// Accessing static methods
 console.log(BankBranch.getTotalBranchCount()); // Outputs: 2
 const defaultBranch = BankBranch.createDefaultBranch();
 ```
 
-### Key Points:
+### Key Takeaways:
 
-- Shared across all instances of the class
-- Accessed directly through the class name
-- Useful for utility functions and class-level data
+- Centralized tracking of organizational data
+- Utility methods not tied to specific instances
+- Shared state across all class instances
 
 ## 4. Inheritance
 
-Inheritance allows creating new classes based on existing classes, promoting code reuse and specialization.
+### Objective: Flexible Payment Processing System
 
-### Detailed Example:
+**Goal**: Create a extensible payment processing framework that allows different payment methods to share common functionality while implementing specific behaviors.
+
+### Example Scenario:
+
+An e-commerce platform needs a versatile payment system that can handle multiple payment types with unique processing requirements.
 
 ```typescript
-// Base class representing a generic payment method
+// Abstract base class for payment methods
 abstract class PaymentMethod {
-  // Protected property accessible by child classes
+  // Shared transaction fee across payment methods
   protected transactionFee: number;
 
   constructor(fee: number) {
     this.transactionFee = fee;
   }
 
-  // Abstract method to be implemented by child classes
+  // Abstract method to be implemented by specific payment methods
   abstract processPayment(amount: number): boolean;
 
-  // Concrete method available to all child classes
+  // Shared method to calculate total amount with transaction fee
   calculateTotalAmount(amount: number): number {
     return amount + this.transactionFee;
   }
 }
 
-// Inherited class for credit card payments
+// Specific implementation for credit card payments
 class CreditCardPayment extends PaymentMethod {
-  // Additional property specific to credit card
+  // Additional property specific to credit cards
   private cardType: string;
 
   constructor(fee: number, cardType: string) {
-    // Call parent class constructor
     super(fee);
     this.cardType = cardType;
   }
 
-  // Implement the abstract method
+  // Implement payment processing specific to credit cards
   processPayment(amount: number): boolean {
-    // Simulate payment processing logic
     console.log(`Processing ${this.cardType} payment of ${amount}`);
     return true;
   }
 
-  // Additional method specific to credit card
+  // Additional method for credit card-specific information
   getCardType(): string {
     return this.cardType;
   }
@@ -233,31 +236,35 @@ visaPayment.processPayment(100); // Processes payment
 console.log(visaPayment.calculateTotalAmount(100)); // Includes transaction fee
 ```
 
-### Key Points:
+### Key Takeaways:
 
-- `extends` keyword creates a child class
-- `super()` calls the parent class constructor
-- Can override and extend parent class methods
+- Allows creation of specialized payment methods
+- Shares common functionality through base class
+- Enables easy extension of payment processing capabilities
 
 ## 5. Polymorphism
 
-Polymorphism allows different classes to implement methods differently while sharing a common interface.
+### Objective: Geometric Shape Area Calculation System
 
-### Detailed Example:
+**Goal**: Develop a flexible system for calculating areas of different geometric shapes with a uniform interface.
+
+### Example Scenario:
+
+A drawing or design application needs to calculate areas of various shapes dynamically, allowing easy addition of new shape types.
 
 ```typescript
-// Abstract base class defining a common interface
+// Abstract base class for geometric shapes
 abstract class Shape {
-  // Abstract method to be implemented by child classes
+  // Abstract method to calculate area
   abstract calculateArea(): number;
 
-  // Concrete method with default implementation
+  // Shared method to describe the shape
   describe(): string {
     return `Area: ${this.calculateArea()}`;
   }
 }
 
-// Circle implementation
+// Circle shape implementation
 class Circle extends Shape {
   private radius: number;
 
@@ -266,13 +273,13 @@ class Circle extends Shape {
     this.radius = radius;
   }
 
-  // Implement area calculation specific to circle
+  // Specific area calculation for circle
   calculateArea(): number {
     return Math.PI * this.radius * this.radius;
   }
 }
 
-// Rectangle implementation
+// Rectangle shape implementation
 class Rectangle extends Shape {
   private width: number;
   private height: number;
@@ -283,13 +290,13 @@ class Rectangle extends Shape {
     this.height = height;
   }
 
-  // Implement area calculation specific to rectangle
+  // Specific area calculation for rectangle
   calculateArea(): number {
     return this.width * this.height;
   }
 }
 
-// Usage demonstrates polymorphism
+// Usage demonstrates polymorphic behavior
 const shapes: Shape[] = [new Circle(5), new Rectangle(4, 6)];
 
 // Each shape calculates area differently
@@ -298,26 +305,30 @@ shapes.forEach((shape) => {
 });
 ```
 
-### Key Points:
+### Key Takeaways:
 
-- Different classes can implement the same method differently
-- Enables flexible and extensible code design
-- Supports method overriding
+- Allows different shapes to implement area calculation uniquely
+- Provides a uniform interface for shape operations
+- Enables easy addition of new shape types
 
 ## 6. Abstraction
 
-Abstraction hides complex implementation details and exposes only essential features.
+### Objective: Flexible Data Storage Management System
 
-### Detailed Example:
+**Goal**: Create a generic data storage system that allows seamless switching between different storage implementations without changing the core application logic.
+
+### Example Scenario:
+
+An application needs to store and retrieve data, with the ability to easily switch between local and cloud storage without modifying the main application code.
 
 ```typescript
-// Interface defining a contract for data storage
+// Interface defining data storage contract
 interface DataStorage {
   save(data: string): void;
   retrieve(): string;
 }
 
-// Concrete implementation for local storage
+// Local storage implementation
 class LocalStorageService implements DataStorage {
   private storageKey: string;
 
@@ -325,18 +336,18 @@ class LocalStorageService implements DataStorage {
     this.storageKey = key;
   }
 
-  // Implementation of save method
+  // Local storage save method
   save(data: string): void {
     localStorage.setItem(this.storageKey, data);
   }
 
-  // Implementation of retrieve method
+  // Local storage retrieve method
   retrieve(): string {
     return localStorage.getItem(this.storageKey) || "";
   }
 }
 
-// Concrete implementation for cloud storage
+// Cloud storage implementation
 class CloudStorageService implements DataStorage {
   private cloudEndpoint: string;
 
@@ -346,18 +357,16 @@ class CloudStorageService implements DataStorage {
 
   // Cloud-specific save implementation
   save(data: string): void {
-    // Simulated cloud storage logic
     console.log(`Saving to cloud: ${data}`);
   }
 
   // Cloud-specific retrieve implementation
   retrieve(): string {
-    // Simulated retrieval from cloud
     return "Retrieved cloud data";
   }
 }
 
-// Usage demonstrates abstraction
+// Data management class using abstraction
 class DataManager {
   private storage: DataStorage;
 
@@ -365,7 +374,7 @@ class DataManager {
     this.storage = storage;
   }
 
-  // Uses storage without knowing implementation details
+  // Process data using storage without knowing implementation details
   processData(data: string): void {
     this.storage.save(data);
     const retrieved = this.storage.retrieve();
@@ -380,23 +389,26 @@ const cloudManager = new DataManager(
 );
 ```
 
-### Key Points:
+### Key Takeaways:
 
-- Hides complex implementation details
-- Provides a clean, simple interface
-- Allows easy swapping of implementations
+- Decouples storage implementation from usage
+- Provides a consistent interface for different storage methods
+- Allows easy switching between storage types
 
 ## 7. Encapsulation
 
-Encapsulation restricts direct access to some of an object's components and can prevent unauthorized access.
+### Objective: Secure Financial Account Transaction Management
 
-### Detailed Example:
+**Goal**: Develop a secure account system that controls access to financial data and ensures safe transaction processing.
+
+### Example Scenario:
+
+A financial application needs to manage account transactions with strict controls, preventing unauthorized access and maintaining a comprehensive transaction log.
 
 ```typescript
 class SecureAccount {
-  // Private property - can only be accessed within the class
+  // Private properties for secure data management
   private balance: number;
-  // Private property to track transaction history
   private transactionLog: string[] = [];
 
   constructor(initialBalance: number) {
@@ -407,7 +419,7 @@ class SecureAccount {
     this.balance = initialBalance;
   }
 
-  // Controlled method to deposit funds
+  // Controlled deposit method
   deposit(amount: number): void {
     if (amount <= 0) {
       throw new Error("Deposit amount must be positive");
@@ -416,7 +428,7 @@ class SecureAccount {
     this.logTransaction(`Deposit: ${amount}`);
   }
 
-  // Controlled method to withdraw funds
+  // Controlled withdrawal method
   withdraw(amount: number): boolean {
     if (amount > this.balance) {
       this.logTransaction(`Failed withdrawal attempt: ${amount}`);
@@ -427,18 +439,18 @@ class SecureAccount {
     return true;
   }
 
-  // Private method for logging transactions
+  // Private method for transaction logging
   private logTransaction(message: string): void {
     const timestamp = new Date().toISOString();
     this.transactionLog.push(`${timestamp}: ${message}`);
   }
 
-  // Controlled access to balance
+  // Safe balance retrieval
   getBalance(): number {
     return this.balance;
   }
 
-  // Controlled access to transaction history
+  // Controlled transaction history access
   getTransactionHistory(): string[] {
     return [...this.transactionLog]; // Return a copy to prevent direct modification
   }
@@ -452,15 +464,15 @@ console.log(account.getBalance()); // Safely access balance
 console.log(account.getTransactionHistory()); // Access transaction log
 ```
 
-### Key Points:
+### Key Takeaways:
 
-- Prevents direct access to internal state
-- Provides controlled access through methods
-- Adds validation and logging capabilities
+- Protects internal account state
+- Provides controlled access to financial operations
+- Maintains a secure transaction logging mechanism
 
 ## Conclusion
 
-Object-Oriented Programming in TypeScript provides powerful tools for creating structured, maintainable, and scalable code. By understanding and applying these principles, you can write more robust and flexible applications.
+Object-Oriented Programming in TypeScript offers powerful techniques for creating robust, flexible, and maintainable software systems. By understanding these principles, developers can design more efficient and scalable applications.
 
 ## Contributing
 

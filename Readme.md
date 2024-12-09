@@ -1,4 +1,3 @@
-# TypeScript Object-Oriented Programming (OOP) Tutorial
 
 # TypeScript Object-Oriented Programming (OOP) Tutorial
 

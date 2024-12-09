@@ -1,5 +1,141 @@
 # TypeScript Object-Oriented Programming (OOP) Tutorial
 
+# TypeScript Object-Oriented Programming (OOP) Tutorial
+
+## Introduction to Object-Oriented Programming (OOP) Concepts in TypeScript
+
+Object-Oriented Programming (OOP) is a powerful programming paradigm that provides a structured approach to software design. In TypeScript, OOP principles help create robust, flexible, and maintainable software systems. Let's explore the key OOP concepts:
+
+### 1. Prototype
+Prototypes are the fundamental mechanism for object inheritance in JavaScript and TypeScript. They allow:
+- Dynamic method addition to objects
+- Runtime object behavior creation
+- Flexible object capability extension
+- Efficient method sharing across object instances
+
+Prototypes act as blueprints defining shared behaviors for objects, enabling dynamic method implementation.
+
+### 2. Classes
+Classes are blueprints for creating objects with:
+- Structured properties and methods
+- Controlled data access
+- Built-in constructors
+- Support for encapsulation and inheritance
+
+They provide a modern, clean approach to object creation, allowing robust implementation of object behaviors with built-in validation and security.
+
+### 3. Static Methods and Properties
+Static elements belong to the class itself, not individual instances:
+- Shared across all class instances
+- Useful for utility functions and organizational tracking
+- Callable without creating object instances
+
+Static methods are ideal for tracking organizational data and creating utility functions that don't require object instantiation.
+
+### 4. Inheritance
+Inheritance enables creating new classes based on existing ones:
+- Promotes code reuse
+- Allows creation of specialized classes
+- Supports hierarchical class structures
+- Enables child classes to extend or override parent class behaviors
+
+This principle allows for creating complex class hierarchies while maintaining code efficiency.
+
+### 5. Polymorphism
+Polymorphism allows objects of different types to be treated uniformly:
+- Enables flexible method implementations
+- Supports creating generic interfaces
+- Allows runtime method selection
+
+It provides a way to perform a single action in different ways across various object types.
+
+### 6. Abstraction
+Abstraction focuses on hiding complex implementation details:
+- Provides a clean, simplified interface
+- Decouples implementation from usage
+- Allows easy switching between different implementations
+
+This principle helps manage complexity by exposing only necessary details and hiding internal complexities.
+
+### 7. Encapsulation
+Encapsulation protects an object's internal state:
+- Restricts direct access to object components
+- Provides controlled data access
+- Ensures data integrity
+- Implements access modifiers (public, private, protected)
+
+It acts as a protective mechanism, maintaining the security and integrity of object data.
+
+### Key Benefits
+These OOP principles work together to create:
+- More organized code
+- Reusable components
+- Maintainable software systems
+- Flexible and scalable applications
+
+TypeScript enhances these concepts with strong typing, making OOP implementations even more robust and predictable.
+
+By understanding and applying these principles, developers can design more efficient, readable, and extensible software solutions.
+
+## Repository Overview
+
+This repository demonstrates Object-Oriented Programming (OOP) concepts in TypeScript through practical, real-world examples. Each section explores a key OOP principle with specific objectives and implementations.
+
+## Detailed Sections
+
+The tutorial covers seven key OOP concepts with comprehensive code examples:
+
+1. **Prototype**: Employee Bonus and Salary Management System
+2. **Classes**: Secure Bank Account Management System
+3. **Static Methods and Properties**: Bank Branch Management Tracking System
+4. **Inheritance**: Flexible Payment Processing System
+5. **Polymorphism**: Geometric Shape Area Calculation System
+6. **Abstraction**: Flexible Data Storage Management System
+7. **Encapsulation**: Secure Financial Account Transaction Management
+
+## Getting Started
+
+### Prerequisites
+- TypeScript
+- Node.js
+- A code editor (VS Code recommended)
+
+### Installation
+1. Clone the repository
+2. Install dependencies
+   ```bash
+   npm install
+   ```
+3. Compile TypeScript files
+   ```bash
+   tsc
+   ```
+
+## Running Examples
+Each section contains runnable code examples demonstrating specific OOP principles.
+
+## Contributing
+
+Contributions are welcome! Feel free to:
+- Submit pull requests
+- Open issues
+- Provide feedback on existing implementations
+
+### Contribution Guidelines
+1. Fork the repository
+2. Create a new branch
+3. Make your changes
+4. Submit a pull request
+
+## License
+
+[Specify your license here - e.g., MIT, Apache 2.0]
+
+## Additional Resources
+- [TypeScript Official Documentation](https://www.typescriptlang.org/docs/)
+- [MDN Web Docs: Object-Oriented Programming](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object-oriented_programming)
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
+
 ## Overview
 
 This repository demonstrates Object-Oriented Programming (OOP) concepts in TypeScript through practical, real-world examples. Each section explores a key OOP principle with a specific objective and implementation.
